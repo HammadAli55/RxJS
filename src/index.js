@@ -15,7 +15,7 @@ const observable = new Observable((subscriber) => {
 })
  
 // instance have function called subscribe
-// subscribe allow us to pass on observer (as an object)
+// subscribe allow us to pass in an observer (as an object)
 observable.subscribe(
     {
         // observers can be partial, they are completely optional
