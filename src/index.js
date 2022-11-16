@@ -2,6 +2,8 @@ import { Observable } from 'rxjs'
 
 
 // new instance of observable class
+// subscriber argument is an object for interacting with observers 
+// ^ we can emit data, throw error and tell observers we are finished emitting data
 const observable = new Observable((subscriber) => {
     // emitting data to observers
     subscriber.next('Hello World')

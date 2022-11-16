@@ -9187,6 +9187,8 @@ var _zipWith = require("./internal/operators/zipWith");
 
 var _rxjs = require("rxjs");
 // new instance of observable class
+// subscriber argument is an object for interacting with observers 
+// ^ we can emit data, throw error and tell observers we are finished emitting data
 var observable = new _rxjs.Observable(function (subscriber) {
   // emitting data to observers
   subscriber.next('Hello World');
