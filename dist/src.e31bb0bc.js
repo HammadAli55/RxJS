@@ -9226,6 +9226,7 @@ var subscription = observable.subscribe({
 });
 // must clear interval after completing the observable
 setTimeout(function () {
+  // Unsubscribe: method of subscription that takes no argument and just disposes the resourse held by the subscription
   subscription.unsubscribe();
 }, 4000);
 },{"rxjs":"../node_modules/rxjs/dist/esm5/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {

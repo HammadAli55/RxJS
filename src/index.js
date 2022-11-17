@@ -42,6 +42,7 @@ const subscription = observable.subscribe(
 )
 // must clear interval after completing the observable
 setTimeout(() => {
+    // Unsubscribe: method of subscription that takes no argument and just disposes the resourse held by the subscription
     subscription.unsubscribe()
 }, 4000)
 
