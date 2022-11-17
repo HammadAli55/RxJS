@@ -9186,12 +9186,20 @@ var _zipWith = require("./internal/operators/zipWith");
 "use strict";
 
 var _rxjs = require("rxjs");
-// the observable will listen for click events until the user closes the app. 
-//^ If we don't listen event, we should unsuscribe them from observable
-//Otherwise we experience memory leak
-// fromEvent won't stop listening for events
-var observable = (0, _rxjs.fromEvent)(document, 'click');
-observable.subscribe(console.log);
+// flattering an array - used to reduce deeply nested array in to a simpler array
+
+// 'of' operator is synchronous, and complete the observable phase. 
+// but can't flatter the array. To flatter the array, we use 'from' operator
+// loop run 5 times
+var observable = (0, _rxjs.of)('https://jsonplaceholder.typicode.com/todos/1');
+observable.subscribe({
+  next: function next(val) {
+    console.log(val);
+  },
+  complete: function complete() {
+    console.log('completed');
+  }
+});
 },{"rxjs":"../node_modules/rxjs/dist/esm5/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

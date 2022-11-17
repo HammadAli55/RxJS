@@ -1,14 +1,19 @@
-import {fromEvent} from 'rxjs'
+import {of} from 'rxjs'
+
+// flattering an array - used to reduce deeply nested array in to a simpler array
 
 
-// the observable will listen for click events until the user closes the app. 
-//^ If we don't listen event, we should unsuscribe them from observable
-//Otherwise we experience memory leak
-// fromEvent won't stop listening for events
-const observable = fromEvent(
-  document, 'click'
-)
+// 'of' operator is synchronous, and complete the observable phase. 
+// but can't flatter the array. To flatter the array, we use 'from' operator
+// loop run 5 times
+const observable = of('https://jsonplaceholder.typicode.com/todos/1')
 
-observable.subscribe(
-  console.log
+observable.subscribe({
+  next: (val) => {
+    console.log(val)
+  },
+  complete: () => {
+    console.log('completed')
+  }
+}
 )
