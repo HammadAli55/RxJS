@@ -9186,17 +9186,12 @@ var _zipWith = require("./internal/operators/zipWith");
 "use strict";
 
 var _rxjs = require("rxjs");
-// Timer operator: After given duration, emit numbers in sequence every specified duration
-/*
-  timer takes a second argument, how often to emit subsequent values
-  in this case we will emit first value after 1 second and subsequent
-  values every 3 seconds after
-*/
-var observable = (0, _rxjs.timer)(1000, 3000);
-
-// instance have function called subscribe
-// subscribe allow us to pass in an observer (as an object)
-var subscription = observable.subscribe(console.log);
+// the observable will listen for click events until the user closes the app. 
+//^ If we don't listen event, we should unsuscribe them from observable
+//Otherwise we experience memory leak
+// fromEvent won't stop listening for events
+var observable = (0, _rxjs.fromEvent)(document, 'click');
+observable.subscribe(console.log);
 },{"rxjs":"../node_modules/rxjs/dist/esm5/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

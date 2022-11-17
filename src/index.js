@@ -1,15 +1,14 @@
-import { timer } from 'rxjs'
+import {fromEvent} from 'rxjs'
 
-// Timer operator: After given duration, emit numbers in sequence every specified duration
-/*
-  timer takes a second argument, how often to emit subsequent values
-  in this case we will emit first value after 1 second and subsequent
-  values every 3 seconds after
-*/
-const observable = timer(1000, 3000)
- 
-// instance have function called subscribe
-// subscribe allow us to pass in an observer (as an object)
-const subscription = observable.subscribe(
-    console.log
+
+// the observable will listen for click events until the user closes the app. 
+//^ If we don't listen event, we should unsuscribe them from observable
+//Otherwise we experience memory leak
+// fromEvent won't stop listening for events
+const observable = fromEvent(
+  document, 'click'
+)
+
+observable.subscribe(
+  console.log
 )
