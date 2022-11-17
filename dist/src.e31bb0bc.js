@@ -9186,24 +9186,25 @@ var _zipWith = require("./internal/operators/zipWith");
 "use strict";
 
 var _rxjs = require("rxjs");
-// Observer: responsible for receivng data
-// Subscription: establishing connection with observable 
+//- Observer: responsible for receivng data
+//- Subscription: establishing connection with observable 
 
-// new instance of observable class
-// subscriber argument is an object for interacting with observers 
+//- new instance of observable class
+//- subscriber argument is an object for interacting with observers 
 // ^ we can emit data, throw error and tell observers we are finished emitting data
 var observable = new _rxjs.Observable(function (subscriber) {
   var id = setInterval(function () {
-    // emitting data to observers
+    //- emitting data to observers
     subscriber.next('Hello World');
-    // after this we won't able to emit a new value
+    //- after this we won't able to emit a new value
     // subscriber.error('Error!')
-    subscriber.next('Shah');
-    // prevent observable for pushing new data. This is a manual way to terminate obeservable
+    //- check memory leakage:
+    //- prevent observable for pushing new data. This is a manual way to terminate obeservable
     // subscriber.complete()
+    // console.log('check memory leakage')
   }, 1000);
   return function () {
-    // memory allocated to interval won't stop until subscriber is completed
+    //- memory allocated to interval won't stop until subscriber is completed
     clearInterval(id);
   };
 });
@@ -9211,9 +9212,9 @@ var observable = new _rxjs.Observable(function (subscriber) {
 // instance have function called subscribe
 // subscribe allow us to pass in an observer (as an object)
 var subscription = observable.subscribe({
-  // observers can be partial, they are completely optional
-  // next responsible for handling data pushed from observable
-  // value refers to the data emitted by the observable
+  //- observers can be partial, they are completely optional
+  //- next responsible for handling data pushed from observable
+  //- value refers to the data emitted by the observable
   next: function next(value) {
     console.log(value);
   },
@@ -9224,9 +9225,9 @@ var subscription = observable.subscribe({
     console.error(err);
   }
 });
-// must clear interval after completing the observable
+//- must clear interval after completing the observable
 setTimeout(function () {
-  // Unsubscribe: method of subscription that takes no argument and just disposes the resourse held by the subscription
+  //- Unsubscribe: method of subscription that takes no argument and just disposes the resourse held by the subscription
   subscription.unsubscribe();
 }, 4000);
 },{"rxjs":"../node_modules/rxjs/dist/esm5/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
