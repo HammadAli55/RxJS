@@ -9186,12 +9186,14 @@ var _zipWith = require("./internal/operators/zipWith");
 "use strict";
 
 var _rxjs = require("rxjs");
-// flattering an array - used to reduce deeply nested array in to a simpler array
-
-// 'of' operator is synchronous, and complete the observable phase. 
-// but can't flatter the array. To flatter the array, we use 'from' operator
-// loop run 5 times
-var observable = (0, _rxjs.of)('https://jsonplaceholder.typicode.com/todos/1');
+/* Map Operator:
+  Applies a given project function to each value 
+  emitted by the source Observable, and emits the 
+  resulting values as an Observable.
+*/
+var observable = (0, _rxjs.of)(1, 2, 3, 4, 5).pipe((0, _rxjs.map)(function (value) {
+  return "$".concat(value);
+}));
 observable.subscribe({
   next: function next(val) {
     console.log(val);
@@ -9225,7 +9227,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52249" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50951" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
