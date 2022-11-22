@@ -1,4 +1,4 @@
-import {of, fromEvent} from 'rxjs'
+import {of} from 'rxjs'
 import { map } from 'rxjs'
 
 /* Map Operator:
@@ -6,10 +6,8 @@ import { map } from 'rxjs'
   emitted by the source Observable, and emits the 
   resulting values as an Observable.
 */
-const observable = fromEvent(
-  document, 'keydown'
-).pipe(
-  map(event => event.code)
+const observable = of(1,2,3,4,5).pipe(
+  map((value) => `$${value}`)
 )
 
 observable.subscribe({
