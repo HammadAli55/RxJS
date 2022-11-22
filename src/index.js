@@ -1,15 +1,19 @@
-import {of, fromEvent} from 'rxjs'
+import {of, fromEvent, pluck} from 'rxjs'
 import { map } from 'rxjs'
 
-/* Map Operator:
-  Applies a given project function to each value 
-  emitted by the source Observable, and emits the 
-  resulting values as an Observable.
+/* Pluck operator:
+Like map, but meant only for picking one 
+of the nested properties of every emitted value.
+
+Use map and optional chaining: 
+pluck('foo', 'bar') is map(x => x?.foo?.bar). 
+Will be removed in v8.
 */
 const observable = fromEvent(
   document, 'keydown'
 ).pipe(
-  map(event => event.code)
+  // map(event => event.code)
+  pluck('code')
 )
 
 observable.subscribe({

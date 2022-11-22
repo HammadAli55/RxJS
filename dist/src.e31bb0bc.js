@@ -9186,14 +9186,17 @@ var _zipWith = require("./internal/operators/zipWith");
 "use strict";
 
 var _rxjs = require("rxjs");
-/* Map Operator:
-  Applies a given project function to each value 
-  emitted by the source Observable, and emits the 
-  resulting values as an Observable.
+/* Pluck operator:
+Like map, but meant only for picking one 
+of the nested properties of every emitted value.
+
+Use map and optional chaining: 
+pluck('foo', 'bar') is map(x => x?.foo?.bar). 
+Will be removed in v8.
 */
-var observable = (0, _rxjs.fromEvent)(document, 'keydown').pipe((0, _rxjs.map)(function (event) {
-  return event.code;
-}));
+var observable = (0, _rxjs.fromEvent)(document, 'keydown').pipe(
+// map(event => event.code)
+(0, _rxjs.pluck)('code'));
 observable.subscribe({
   next: function next(val) {
     console.log(val);
