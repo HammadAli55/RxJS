@@ -1,5 +1,5 @@
-import {of, fromEvent} from 'rxjs'
-import { map, pluck, filter } from 'rxjs/operators'
+import {of, fromEvent, pluck} from 'rxjs'
+import { map } from 'rxjs'
 
 /* Pluck operator:
 Like map, but meant only for picking one 
@@ -12,12 +12,8 @@ Will be removed in v8.
 const observable = fromEvent(
   document, 'keydown'
 ).pipe(
-  // map(event => {
-  //   return event.code === 'Space' ? event.code : null
-  //   }
-  // ),
-  pluck('code'),
-  filter(code => code === 'space')
+  // map(event => event.code)
+  pluck('code')
 )
 
 observable.subscribe({
