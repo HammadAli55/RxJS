@@ -1,13 +1,8 @@
 import {of, fromEvent} from 'rxjs'
 import { map, pluck, filter } from 'rxjs/operators'
 
-/* Pluck operator:
-Like map, but meant only for picking one 
-of the nested properties of every emitted value.
-
-Use map and optional chaining: 
-pluck('foo', 'bar') is map(x => x?.foo?.bar). 
-Will be removed in v8.
+/* Filter operator:
+Emit values that pass the provided condition
 */
 const observable = fromEvent(
   document, 'keydown'

@@ -10015,13 +10015,8 @@ var _zipWith = require("../internal/operators/zipWith");
 
 var _rxjs = require("rxjs");
 var _operators = require("rxjs/operators");
-/* Pluck operator:
-Like map, but meant only for picking one 
-of the nested properties of every emitted value.
-
-Use map and optional chaining: 
-pluck('foo', 'bar') is map(x => x?.foo?.bar). 
-Will be removed in v8.
+/* Filter operator:
+Emit values that pass the provided condition
 */
 var observable = (0, _rxjs.fromEvent)(document, 'keydown').pipe(
 // map(event => {
