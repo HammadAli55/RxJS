@@ -10015,17 +10015,15 @@ var _zipWith = require("../internal/operators/zipWith");
 
 var _rxjs = require("rxjs");
 var _operators = require("rxjs/operators");
-/* Filter operator:
-Emit values that pass the provided condition
+/* Reduce - 
+  Applies an accumulator function over the source Observable, and 
+  returns the accumulated result when the source completes, given an 
+  optional seed value.
 */
-var observable = (0, _rxjs.fromEvent)(document, 'keydown').pipe(
-// map(event => {
-//   return event.code === 'Space' ? event.code : null
-//   }
-// ),
-(0, _operators.pluck)('code'), (0, _operators.filter)(function (code) {
-  return code === 'space';
-}));
+
+var observable = (0, _rxjs.of)(1, 2, 3).pipe((0, _operators.reduce)(function (acc, val) {
+  return acc + val;
+}, 0));
 observable.subscribe({
   next: function next(val) {
     console.log(val);
@@ -10059,7 +10057,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63067" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53447" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
