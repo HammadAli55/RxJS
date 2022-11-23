@@ -10019,9 +10019,11 @@ var _operators = require("rxjs/operators");
   Applies an accumulator function over the source Observable, and 
   returns the accumulated result when the source completes, given an 
   optional seed value.
+  '0' that is called seed value that is optional and represents starting value. Starting value should start at 0  
+  new numbers are added in seed value
 */
 
-var observable = (0, _rxjs.of)(1, 2, 3).pipe((0, _operators.reduce)(function (acc, val) {
+var observable = (0, _rxjs.of)(1, 2, 3, 4, 5).pipe((0, _operators.reduce)(function (acc, val) {
   return acc + val;
 }, 0));
 observable.subscribe({
@@ -10057,7 +10059,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53447" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61658" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
