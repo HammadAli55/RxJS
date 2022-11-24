@@ -1,10 +1,11 @@
-import { of } from 'rxjs'
-import { reduce } from 'rxjs/operators'
+import { interval } from 'rxjs'
+import { scan, take } from 'rxjs/operators'
 
-/* Reduce - 
+/* Scan - 
   Applies an accumulator function over the source Observable, and 
-  returns the accumulated result when the source completes, given an 
-  optional seed value.
+  returns the accumulated result on each source emission, given an 
+  optional seed value. Work same like Reduce operator but reduce
+  will emit only once on compilation
   
   Seed value '0': 
   It is optional and represents starting value. 
@@ -15,8 +16,10 @@ import { reduce } from 'rxjs/operators'
   Value (val): It references the value emitted by the observable
 */
 
-const observable = of(1,2,3,4,5).pipe(
-  reduce(
+const observable = interval('500').pipe(
+  // take the first emitted value from scan operator then complete
+  take(5),
+  scan(
     (acc,  val) => acc + val, 0
   )
 )

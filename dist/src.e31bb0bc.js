@@ -10015,10 +10015,11 @@ var _zipWith = require("../internal/operators/zipWith");
 
 var _rxjs = require("rxjs");
 var _operators = require("rxjs/operators");
-/* Reduce - 
+/* Scan - 
   Applies an accumulator function over the source Observable, and 
-  returns the accumulated result when the source completes, given an 
-  optional seed value.
+  returns the accumulated result on each source emission, given an 
+  optional seed value. Work same like Reduce operator but reduce
+  will emit only once on compilation
   
   Seed value '0': 
   It is optional and represents starting value. 
@@ -10029,7 +10030,9 @@ var _operators = require("rxjs/operators");
   Value (val): It references the value emitted by the observable
 */
 
-var observable = (0, _rxjs.of)(1, 2, 3, 4, 5).pipe((0, _operators.reduce)(function (acc, val) {
+var observable = (0, _rxjs.interval)('500').pipe(
+// take the first emitted value from scan operator then complete
+(0, _operators.take)(5), (0, _operators.scan)(function (acc, val) {
   return acc + val;
 }, 0));
 observable.subscribe({
