@@ -1,0 +1,10 @@
+RxJS
+Used to manage obervers and observables 
+
+RxJS imports function called operators in order to achieve delcarative programming.
+RxJS operators facilitate us to change the original observable in some manner and return 
+a new observable. The operators do not change the existing observable.
+
+Operators: Help us control obervables stream of data types:
+1. Creation Operators (create new observables)
+2. Pipeable Operators (takes an observable as an input and outputs a new observable)
