@@ -10450,6 +10450,9 @@ var _ajax = require("rxjs/ajax");
 exhaustMap: 
 You ignore new orders and finish whatever order you're working on. 
 Once finished, you are free to accept new orders.
+
+Ignore second request because first one is going.
+prevent users from spamming form submissions
 */
 
 var button = document.querySelector('#btn');
