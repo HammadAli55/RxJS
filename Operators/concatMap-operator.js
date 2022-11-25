@@ -1,11 +1,11 @@
 import { fromEvent, interval} from 'rxjs'
-import { exhaustMap, take, tap } from 'rxjs/operators'
+import { concatMap, take, tap } from 'rxjs/operators'
 import { ajax } from 'rxjs/ajax';
 
 /*
-exhaustMap: 
-You ignore new orders and finish whatever order you're working on. 
-Once finished, you are free to accept new orders.
+concatMap: 
+The order gets added to a queue. You finish whatever order you're working on. 
+Once you finish the order, you will work on the next order.
 */
 
 const button = document.querySelector('#btn')
@@ -13,7 +13,7 @@ const button = document.querySelector('#btn')
 const observable = fromEvent(
   button, 'click'
 ).pipe(
-  exhaustMap(() => {
+  concatMap(() => {
     // When we click button twice, the first request will be cancelled. It's a desireable behavior
     // return interval(1000)
     return ajax.getJSON('https://jsonplaceholder.typicode.com/todos/1')
