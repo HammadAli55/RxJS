@@ -1,11 +1,10 @@
 import { fromEvent, interval} from 'rxjs'
-import { concatMap, take, tap } from 'rxjs/operators'
+import { switchMap, take, tap } from 'rxjs/operators'
 import { ajax } from 'rxjs/ajax';
 
 /*
-concatMap: 
-The order gets added to a queue. You finish whatever order you're working on. 
-Once you finish the order, you will work on the next order.
+switchMap: 
+Stop working on the order and start working on the new order. Only the latest order will eve be finished.
 */
 
 const button = document.querySelector('#btn')
@@ -13,7 +12,7 @@ const button = document.querySelector('#btn')
 const observable = fromEvent(
   button, 'click'
 ).pipe(
-  concatMap(() => {
+  switchMap(() => {
     // When we click button twice, the first request will be cancelled. It's a desireable behavior
     // return interval(1000)
     return ajax.getJSON('https://jsonplaceholder.typicode.com/todos/1')
